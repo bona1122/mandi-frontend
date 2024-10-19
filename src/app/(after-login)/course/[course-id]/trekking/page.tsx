@@ -133,6 +133,15 @@ const TrakingPage = ({ params }: { params: { 'course-id': string } }) => {
     }
   }, [courseStatus, CourseError, router]);
 
+
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, []);
+
   if (showResult)
     return (
       <ResultPage

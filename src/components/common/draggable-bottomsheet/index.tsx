@@ -32,17 +32,17 @@ const DraggableBottomSheet = ({
   onClose,
   children,
 }: DraggableBottomSheetProps) => {
-  useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
+  // useEffect(() => {
+  //   if (isOpen) {
+  //     document.body.style.overflow = 'hidden';
+  //   } else {
+  //     document.body.style.overflow = 'unset';
+  //   }
 
-    return () => {
-      document.body.style.overflow = 'unset';
-    };
-  }, [isOpen]);
+  //   return () => {
+  //     document.body.style.overflow = 'unset';
+  //   };
+  // }, [isOpen]);
   return (
     <Sheet
       isOpen={isOpen}

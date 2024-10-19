@@ -28,36 +28,38 @@ const Course = () => {
 
   return (
     <Layout hasTopNav={false} hasTabBar={true}>
-      <div
-        className={cx(layout === 'list' ? 'list-searchbox' : 'map-searchbox')}
-        onClick={handleClickSearch}
-      >
-        <Input
-          placeholder='Course name, Location or Other.'
-          value=''
-          leftIcon={<IconSearch width={20} height={20} />}
-          rightIcon={<IconXCircle width={20} height={20} />}
-          className={cx(layout === 'map' && 'map-searchbox__input')}
-          style={{
-            pointerEvents: 'none',
-          }}
+      <div className={cx('container')}>
+        <div
+          className={cx(layout === 'list' ? 'list-searchbox' : 'map-searchbox')}
+          onClick={handleClickSearch}
+        >
+          <Input
+            placeholder='Course name, Location or Other.'
+            value=''
+            leftIcon={<IconSearch width={20} height={20} />}
+            rightIcon={<IconXCircle width={20} height={20} />}
+            className={cx(layout === 'map' && 'map-searchbox__input')}
+            style={{
+              pointerEvents: 'none',
+            }}
+          />
+        </div>
+        {layout === 'list' ? (
+          <div className={cx('list-container')}>
+            <Suspense>
+              <FilteredCourse />
+            </Suspense>
+          </div>
+        ) : (
+          layout === 'map' && <CourseMapView />
+        )}
+        <ViewSwitchButton
+          visible={!(selectedItem !== null && layout === 'map')}
+          layout={layout}
+          onClick={handleLayoutChange}
+          className={cx('layout-switch-button')}
         />
       </div>
-      {layout === 'list' ? (
-        <div className={cx('list-container')}>
-          <Suspense>
-            <FilteredCourse />
-          </Suspense>
-        </div>
-      ) : (
-        layout === 'map' && <CourseMapView />
-      )}
-      <ViewSwitchButton
-        visible={!(selectedItem !== null && layout === 'map')}
-        layout={layout}
-        onClick={handleLayoutChange}
-        className={cx('layout-switch-button')}
-      />
     </Layout>
   );
 };

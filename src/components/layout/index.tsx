@@ -37,7 +37,12 @@ export const Layout = (props: LayoutProps) => {
 
   return (
     <main className={cx(BLOCK, getMainClass(hasTopNav, hasTabBar))}>
-      {hasTopNav && <TopNavBar {...getTopNavProps(props)} />}
+      {hasTopNav && (
+        <TopNavBar
+          {...getTopNavProps(props)}
+          topNavBarClassName={cx(`${BLOCK}__top-navbar`)}
+        />
+      )}
       <div
         className={cx(
           `${BLOCK}__content`,

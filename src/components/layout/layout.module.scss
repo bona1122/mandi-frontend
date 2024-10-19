@@ -2,39 +2,26 @@
 
 
 .layout {
-  height: 100%;
-  position: relative;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  &__top-navbar{
+    flex-shrink: 0;
+  }
+
+  &__content {
+   flex-grow: 1;
+  //  height: 100%;
+   overflow-y: scroll; 
+   scrollbar-width: none;
+  //  flex-shrink: 0;
+  }
 
   &__tabbar {
-    // TODO: 새로 고침 시에, 화면이 max-width 벗어남.
-    // position: absolute; 를 없애면 해결. 일단 보류
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    width: 100%;
+    // position: sticky;
+    // bottom: 0;
+    z-index: 10;
   }
-
- 
-  &__content {
-    position: relative;
-    height: 100%;
-    overflow-y: scroll;
-    scrollbar-width: none;
-
-    &--top-nav {
-      height: calc(100vh - 56px);
-    }
-
-    &--tabbar {
-      height: calc(100vh - 52.5px);
-    }
-
-    &--both-nav {
-      height: calc(100vh - 108.5px);
-    }
-  }
-
- 
 }
 
