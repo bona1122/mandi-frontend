@@ -12,6 +12,10 @@ import { ReviewFormData } from '@/types/form';
 import DetailSection from './_components/detail-section/detail-section';
 import ScoreSection from './_components/score-section/score-section';
 import styles from './page.module.scss';
+import { useReviewMutation } from '@/queries/courseReviewQuery';
+import { useSnackbar } from '@/hooks/useSnackbar';
+import { useRouter } from 'next/navigation';
+import { useQueryClient } from '@tanstack/react-query';
 
 const cx = classNames.bind(styles);
 
@@ -20,6 +24,9 @@ const ReviewWrite = ({
 }: {
   params: { 'review-id': string };
 }) => {
+  const router = useRouter();
+  const queryClient = useQueryClient();
+  const { createSnackbar } = useSnackbar();
   const { setValue, watch, control, getValues, handleSubmit } =
     useForm<ReviewFormData>({
       defaultValues: {
@@ -27,6 +34,20 @@ const ReviewWrite = ({
         images: [],
       },
     });
+  const { mutate } = useReviewMutation({
+    onSuccess: async () => {
+      createSnackbar({
+        type: 'check',
+        content: 'The review has been posted.',
+      });
+      router.push('/my-info/course-review');
+    },
+    onError: error => {
+      if (error.status === 404) {
+        router.push('/my-info/course-review');
+      }
+    },
+  });
   const [dialogOpen, setDialogOpen] = useState(false);
   const handleDialogClose = () => setDialogOpen(false);
   const handleCancelClick = () => handleDialogClose();
@@ -38,7 +59,21 @@ const ReviewWrite = ({
   const isFormValid = getValues().score !== null;
 
   const onSubmit = (data: ReviewFormData) => {
-    console.log(data);
+    // console.log(data);
+    if (data.score === null) return;
+    // base64EncodedImageList에서 접두사를 제거
+    const base64EncodedImageList = data.images.map(image => {
+      // 접두사 제거
+      const base64String = image.split(',')[1]; // ','로 나누어 두 번째 부분을 가져옴
+      return base64String;
+    });
+
+    mutate({
+      score: data.score,
+      base64EncodedImageList: base64EncodedImageList,
+      completedCourseId: Number(reviewId),
+      content: data.text,
+    });
   };
   const handlePostClick = () => handleSubmit(onSubmit)();
 

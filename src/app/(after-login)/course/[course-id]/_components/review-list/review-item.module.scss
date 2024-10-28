@@ -16,7 +16,17 @@
     width: 2.5rem;
     height: 2.5rem;
     border-radius: 0.5rem;
-    background-color: $gray-200;
+    border:1px solid $gray-200;
+    background-color: $gray-100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    &__empty-icon{
+      width: 1.2rem;
+      height: 1.2rem;
+      fill: $gray-400;
+    }
   }
 
   &__user-rating{

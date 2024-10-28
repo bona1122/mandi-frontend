@@ -2,21 +2,22 @@ import { create } from 'zustand';
 
 // TODO: 임시구조
 type User = {
-  id: string;
-  email: string;
-  // nickname: string;
+  userId: string | null;
+  // nickname: string | null;
+  // imgUrl: string | null;
   // avatar: string;
   // role: 'admin' | 'user';
 };
 
 type UserStoreType = {
-  user: User;
+  user: User | null;
   setUser: (user: User) => void;
 };
 
 const initialUser: User = {
-  id: '1',
-  email: 'Lola',
+  userId: null,
+  // nickname: null,
+  // imgUrl: null,
 };
 
 export const useUserStore = create<UserStoreType>(set => ({

@@ -3,8 +3,11 @@ import ReviewLayout from '@/app/(after-login)/my-info/_components/review-layout'
 import Tabs from '@/components/common/taps';
 import Layout from '@/components/layout';
 import { useCourseCompleteReviewQuery } from '@/queries/courseReviewQuery';
+import { useQueryClient } from '@tanstack/react-query';
+import { useEffect } from 'react';
 
 const Review = () => {
+  const queryClient = useQueryClient();
   const { data, isLoading, error } = useCourseCompleteReviewQuery();
   const totalReviewCount = data?.response.totalReviewCount;
   const totalCompletedCourseCount = data?.response.totalCompletedCourseCount;
@@ -16,6 +19,9 @@ const Review = () => {
     reviewedAt: course.reviewedAt,
     imageUrlList: course.imageUrlList.map(image => image.url),
   }));
+  useEffect(() => {
+    queryClient.refetchQueries({ queryKey: ['course-complete-review'] });
+  }, []);
 
   if (isLoading) {
     return <div>Loading...</div>;

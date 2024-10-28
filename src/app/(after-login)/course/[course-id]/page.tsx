@@ -24,6 +24,7 @@ import DetailInfo from './_components/detail-info/detail-info';
 import ReviewList from './_components/review-list/review-list';
 import ReviewOverview from './_components/review-overview/review-overview';
 import styles from './page.module.scss';
+import { useCourseReviewsQuery } from '@/queries/courseReviewQuery';
 
 const cx = classNames.bind(styles);
 
@@ -37,6 +38,9 @@ const CourseDetailPage = ({ params }: { params: { 'course-id': string } }) => {
   const [scrolled, setScrolled] = useState(false);
   const [bookmarked, setBookmarked] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
+  const { data: reviewData, status: reviewDataStatus } = useCourseReviewsQuery({
+    courseId: Number(courseId),
+  });
 
   const handleBookmarkClick = () => {
     setBookmarked(prev => !prev);
@@ -153,20 +157,30 @@ const CourseDetailPage = ({ params }: { params: { 'course-id': string } }) => {
             </Button>
           </div>
           <div style={{ height: '20px' }} />
-          {/* <Divider />
-          <div className={cx('review-overview-section')}>
-            <ReviewOverview />
-          </div>
-          <div className={cx('review-list-section')}>
-            <ReviewList maxCount={2} hasFilter={false} />
-            <Button
-              color='white'
-              size='small'
-              onClick={handleMoreRewiewsButtonClick}
-            >
-              more reviews
-            </Button>
-          </div> */}
+          <Divider />
+          {reviewDataStatus === 'success' && (
+            <>
+              <div className={cx('review-overview-section')}>
+                <ReviewOverview
+                  summary={reviewData.pages[0].response.reviewSummary}
+                />
+              </div>
+              <div className={cx('review-list-section')}>
+                <ReviewList
+                  maxCount={2}
+                  hasFilter={false}
+                  reviews={reviewData.pages[0].response.reviews}
+                />
+                <Button
+                  color='white'
+                  size='small'
+                  onClick={handleMoreRewiewsButtonClick}
+                >
+                  more reviews
+                </Button>
+              </div>
+            </>
+          )}
         </div>
       )}
     </Layout>

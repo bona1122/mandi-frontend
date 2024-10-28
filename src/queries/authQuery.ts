@@ -1,8 +1,14 @@
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
 
-
-import { loginAPI, logoutAPI, signupAPI, withdrawalAPI,getAuthId } from '@/apis/auth';
+import {
+  loginAPI,
+  logoutAPI,
+  signupAPI,
+  withdrawalAPI,
+  getAuthId,
+  getUserIdAPI,
+} from '@/apis/auth';
 import { LoginRequest, SignupRequest } from '@/types/request';
 import { LoginResponse, SignupResponse } from '@/types/response';
 
@@ -59,7 +65,6 @@ export const useSignupMutation = ({
   });
 };
 
-
 export const useWithdrawalMutation = ({
   onSuccess,
   onError,
@@ -80,5 +85,12 @@ export const useGetAuthId = () => {
   return useQuery({
     queryKey: ['auth-id'],
     queryFn: () => getAuthId(),
+  });
+};
+
+export const useUserIdQuery = () => {
+  return useQuery({
+    queryKey: ['user-id'],
+    queryFn: () => getUserIdAPI(),
   });
 };

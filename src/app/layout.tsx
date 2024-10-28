@@ -12,6 +12,7 @@ import Loading from './loading';
 import type { Metadata } from 'next';
 
 import '@/styles/globals.scss';
+import { UserProvider } from '@/context/UserContext';
 
 const Pretendard = localFont({
   src: '../styles/fonts/PretendardVariable.woff2',
@@ -269,7 +270,9 @@ export default function RootLayout({
       <AuthContext>
         <body className={Pretendard.className}>
           <QueryProvider>
-            <Suspense fallback={<Loading />}>{children}</Suspense>
+            <UserProvider>
+              <Suspense fallback={<Loading />}>{children}</Suspense>
+            </UserProvider>
           </QueryProvider>
           <SnackbarRoot />
           <MSWComponent />
