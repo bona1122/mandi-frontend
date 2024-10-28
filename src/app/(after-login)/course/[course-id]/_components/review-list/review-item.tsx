@@ -2,23 +2,24 @@
 
 import { useEffect, useRef, useState } from 'react';
 
+import { useQueryClient } from '@tanstack/react-query';
 import classNames from 'classnames/bind';
 import Image from 'next/image';
 
 import TrashcanIcon from '@/assets/icon/icon-bin-mono 1.svg';
 import MoreIcon from '@/assets/icon/icon-ellipsis-vertical.svg';
-import { Menubox } from '@/components/common/menubox';
 import UserIcon from '@/assets/icon/icon-user-mono.svg';
+import Button from '@/components/common/button';
+import Dialog from '@/components/common/dialog';
+import { Menubox } from '@/components/common/menubox';
+import { useDeleteCompletedReview } from '@/queries/courseQuery';
+import { useUserStore } from '@/stores/user';
+import { ReviewDTO } from '@/types/review';
 
 import Star from '../star-raing/star';
 
 import styles from './review-item.module.scss';
-import { ReviewDTO } from '@/types/review';
-import { useUserStore } from '@/stores/user';
-import Dialog from '@/components/common/dialog';
-import Button from '@/components/common/button';
-import { useDeleteCompletedReview } from '@/queries/courseQuery';
-import { useQueryClient } from '@tanstack/react-query';
+
 
 const BLOCK = 'review-item';
 const cx = classNames.bind(styles);

@@ -1,11 +1,12 @@
 import classNames from 'classnames/bind';
+import e from 'express';
+
+import { ReviewSummary } from '@/types/review';
 
 import RatingChart, { Rating } from '../rating-chart/rating-chart';
 import StarRating from '../star-raing/star-rating';
 
 import styles from './review-overview.module.scss';
-import { ReviewSummary } from '@/types/review';
-import e from 'express';
 
 const cx = classNames.bind(styles);
 

@@ -6,13 +6,13 @@ import classNames from 'classnames/bind';
 import EmptyIcon from '@/assets/colored-icon/paste.svg';
 import Chip from '@/components/common/chip';
 import { Menubox } from '@/components/common/menubox';
+import { ReviewSortBy } from '@/hooks/useReviewFilterWithUrl';
 import { ReviewFilter } from '@/types/filter';
+import { ReviewDTO } from '@/types/review';
 
 import { dummyReviews, Review } from './dummy-reviews';
 import ReviewItem from './review-item';
 import styles from './review-list.module.scss';
-import { ReviewDTO } from '@/types/review';
-import { ReviewSortBy } from '@/hooks/useReviewFilterWithUrl';
 
 const BLOCK = 'review-list';
 const cx = classNames.bind(styles);

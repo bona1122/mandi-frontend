@@ -1,19 +1,21 @@
 'use client';
+import { useState } from 'react';
+
 import classNames from 'classnames/bind';
+import { useSearchParams } from 'next/navigation';
 
 import Layout from '@/components/layout';
+import useInfiniteScroll from '@/hooks/useInfiniteScroll';
+import useReviewFilterWithUrl, {
+  ReviewSortBy,
+} from '@/hooks/useReviewFilterWithUrl';
+import { useCourseReviewsQuery } from '@/queries/courseReviewQuery';
 
 import ReviewList from '../_components/review-list/review-list';
 import ReviewOverview from '../_components/review-overview/review-overview';
 
 import styles from './page.module.scss';
-import { useState } from 'react';
-import { useSearchParams } from 'next/navigation';
-import useReviewFilterWithUrl, {
-  ReviewSortBy,
-} from '@/hooks/useReviewFilterWithUrl';
-import { useCourseReviewsQuery } from '@/queries/courseReviewQuery';
-import useInfiniteScroll from '@/hooks/useInfiniteScroll';
+
 
 const cx = classNames.bind(styles);
 

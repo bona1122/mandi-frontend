@@ -1,6 +1,7 @@
+import { useCallback, useMemo } from 'react';
+
 import { useRouter, useSearchParams } from 'next/navigation';
 
-import { useCallback, useMemo } from 'react';
 
 export type ReviewSortBy = 'LATEST' | 'HIGHEST_RATING' | 'LOWEST_RATING';
 
@@ -36,7 +37,7 @@ const useReviewFilterWithUrl = ({ courseId }: UseReviewFilterWithUrl) => {
       const newUrl = `/course/${courseId}/reviews?${queryParams.toString()}`;
       router.push(newUrl);
     },
-    [router],
+    [router, courseId],
   );
 
   const filters = useMemo(() => getFiltersFromUrl(), [getFiltersFromUrl]);

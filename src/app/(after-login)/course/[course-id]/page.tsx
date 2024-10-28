@@ -15,6 +15,7 @@ import { TopNavBar } from '@/components/common/top-navbar';
 import Layout from '@/components/layout';
 import { useCourseStart } from '@/hooks/useCourseStart';
 import { useCourseDetailQuery } from '@/queries/courseQuery';
+import { useCourseReviewsQuery } from '@/queries/courseReviewQuery';
 
 import CourseDisplayOnMap from '../_components/course-display-on-map/course-display-on-map';
 import { MapProvider } from '../map-provider';
@@ -24,7 +25,6 @@ import DetailInfo from './_components/detail-info/detail-info';
 import ReviewList from './_components/review-list/review-list';
 import ReviewOverview from './_components/review-overview/review-overview';
 import styles from './page.module.scss';
-import { useCourseReviewsQuery } from '@/queries/courseReviewQuery';
 
 const cx = classNames.bind(styles);
 

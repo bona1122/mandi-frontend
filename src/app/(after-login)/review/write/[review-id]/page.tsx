@@ -2,20 +2,20 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
+import { useQueryClient } from '@tanstack/react-query';
 import classNames from 'classnames/bind';
+import { useRouter } from 'next/navigation';
 
 import Button from '@/components/common/button';
 import Dialog from '@/components/common/dialog';
 import Layout from '@/components/layout';
+import { useSnackbar } from '@/hooks/useSnackbar';
+import { useReviewMutation } from '@/queries/courseReviewQuery';
 import { ReviewFormData } from '@/types/form';
 
 import DetailSection from './_components/detail-section/detail-section';
 import ScoreSection from './_components/score-section/score-section';
 import styles from './page.module.scss';
-import { useReviewMutation } from '@/queries/courseReviewQuery';
-import { useSnackbar } from '@/hooks/useSnackbar';
-import { useRouter } from 'next/navigation';
-import { useQueryClient } from '@tanstack/react-query';
 
 const cx = classNames.bind(styles);
 

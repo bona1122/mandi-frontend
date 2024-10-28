@@ -5,6 +5,7 @@ import localFont from 'next/font/local';
 import { SnackbarRoot } from '@/components/common/snackbar/snackbar-root';
 import { MSWComponent } from '@/components/msw/msw';
 import AuthContext from '@/context/AuthContext';
+import { UserProvider } from '@/context/UserContext';
 import QueryProvider from '@/queries/QueryProvider';
 
 import Loading from './loading';
@@ -12,7 +13,6 @@ import Loading from './loading';
 import type { Metadata } from 'next';
 
 import '@/styles/globals.scss';
-import { UserProvider } from '@/context/UserContext';
 
 const Pretendard = localFont({
   src: '../styles/fonts/PretendardVariable.woff2',

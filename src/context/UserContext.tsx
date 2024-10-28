@@ -1,5 +1,6 @@
 'use client';
 import { Suspense } from 'react';
+
 import Loading from '@/app/loading';
 import useUser from '@/hooks/useUser';
 

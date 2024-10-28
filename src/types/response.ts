@@ -7,6 +7,7 @@ import {
   MapCourseDTO,
 } from './course';
 import { OauthProvider } from './oauth-provider';
+import { PageInfo } from './page';
 import {
   CompletedCourseDTO,
   ImageUrl,
@@ -14,7 +15,6 @@ import {
   ReviewSummary,
 } from './review';
 import { WeatherItem } from './weather';
-import { PageInfo } from './page';
 
 interface BaseResponse extends AxiosResponse {
   success: boolean;

@@ -1,6 +1,7 @@
+import { useEffect } from 'react';
+
 import { useUserIdQuery } from '@/queries/authQuery';
 import { useUserStore } from '@/stores/user';
-import { useEffect } from 'react';
 
 const useUser = () => {
   const { user, setUser } = useUserStore();
@@ -17,7 +18,7 @@ const useUser = () => {
       });
       console.error('Failed to fetch user ID:', error);
     }
-  }, [status, data, setUser]);
+  }, [status, data, setUser, error]);
 
   return { user, status, error };
 };

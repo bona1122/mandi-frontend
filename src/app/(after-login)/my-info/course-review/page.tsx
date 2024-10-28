@@ -1,10 +1,12 @@
 'use client';
+import { useEffect } from 'react';
+
+import { useQueryClient } from '@tanstack/react-query';
+
 import ReviewLayout from '@/app/(after-login)/my-info/_components/review-layout';
 import Tabs from '@/components/common/taps';
 import Layout from '@/components/layout';
 import { useCourseCompleteReviewQuery } from '@/queries/courseReviewQuery';
-import { useQueryClient } from '@tanstack/react-query';
-import { useEffect } from 'react';
 
 const Review = () => {
   const queryClient = useQueryClient();
@@ -21,7 +23,7 @@ const Review = () => {
   }));
   useEffect(() => {
     queryClient.refetchQueries({ queryKey: ['course-complete-review'] });
-  }, []);
+  }, [queryClient]);
 
   if (isLoading) {
     return <div>Loading...</div>;

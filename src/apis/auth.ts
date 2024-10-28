@@ -1,8 +1,8 @@
 import { LoginRequest, SignupRequest } from '@/types/request';
+import { GetUserIdResponse } from '@/types/response';
 import { setAccessToken, setRefreshToken } from '@/utils/auth';
 
 import { axiosInstance } from './axiosInstance';
-import { GetUserIdResponse } from '@/types/response';
 
 export const loginAPI = async (request: LoginRequest) => {
   const { token } = request;

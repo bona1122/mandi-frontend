@@ -1,4 +1,5 @@
 import { useInfiniteQuery, useMutation, useQuery } from '@tanstack/react-query';
+import { AxiosError } from 'axios';
 
 import {
   getCourseCompleteAPI,
@@ -6,14 +7,13 @@ import {
   getCourseReviewsAPI,
   postReviewAPI,
 } from '@/apis/courseReview';
+import { GetCourseReviewsRequest, PostReviewRequest } from '@/types/request';
 import {
   CourseCompleteReviewResponse,
   CourseCompleteResponse,
   PostReviewResponse,
   GetCourseReviewsResponse,
 } from '@/types/response';
-import { AxiosError } from 'axios';
-import { GetCourseReviewsRequest, PostReviewRequest } from '@/types/request';
 
 export const useCourseCompleteReviewQuery = () => {
   return useQuery<CourseCompleteReviewResponse>({
