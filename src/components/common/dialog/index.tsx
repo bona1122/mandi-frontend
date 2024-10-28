@@ -27,7 +27,7 @@ interface DialogProps {
   /**
    * 모달 설명
    */
-  description: string;
+  description?: string;
   /**
    * 모달 버튼
    */

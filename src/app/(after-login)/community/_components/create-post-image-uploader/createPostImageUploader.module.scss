@@ -1,8 +1,10 @@
 @use "/src/styles/color.scss" as *;
 .container{
   display: flex;
-  align-items: flex-end;
+  // align-items: flex-end;
+  align-items: center;
   gap: 0.5rem;
+
 }
 .container__picture{
   display: flex;
