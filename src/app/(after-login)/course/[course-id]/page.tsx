@@ -74,16 +74,10 @@ const CourseDetailPage = ({ params }: { params: { 'course-id': string } }) => {
   }, [status, error, router]);
 
   return (
-    <Layout
-      hasTopNav={false}
-      hasTabBar={false}
-      // back={true}
-      // topNavBarClassName={cx('navbar', {
-      //   'navbar--not-scrolled': !scrolled,
-      // })}
-    >
+    <Layout hasTopNav={false} hasTabBar={false}>
       <TopNavBar
         back={true}
+        // onBack={() => router.push('/')}
         topNavBarClassName={cx('navbar', {
           'navbar--not-scrolled': !scrolled,
         })}

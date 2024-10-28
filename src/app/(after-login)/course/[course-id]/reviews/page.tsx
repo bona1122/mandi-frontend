@@ -2,7 +2,7 @@
 import { useState } from 'react';
 
 import classNames from 'classnames/bind';
-import { useSearchParams } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 import Layout from '@/components/layout';
 import useInfiniteScroll from '@/hooks/useInfiniteScroll';
@@ -16,11 +16,11 @@ import ReviewOverview from '../_components/review-overview/review-overview';
 
 import styles from './page.module.scss';
 
-
 const cx = classNames.bind(styles);
 
 const CourseReviewsPage = ({ params }: { params: { 'course-id': string } }) => {
   const { 'course-id': courseId } = params;
+  const router = useRouter();
   const { filters, updateUrlWithFilters } = useReviewFilterWithUrl({
     courseId: courseId,
   });
@@ -34,7 +34,13 @@ const CourseReviewsPage = ({ params }: { params: { 'course-id': string } }) => {
   const { loadMoreRef, data, status, isFetching } =
     useInfiniteScroll(courseReviewsQuery);
   return (
-    <Layout hasTabBar={false} hasTopNav={true} title='Reviews' back={true}>
+    <Layout
+      hasTabBar={false}
+      hasTopNav={true}
+      title='Reviews'
+      back={true}
+      // onBack={() => router.push(`/course/${courseId}`)}
+    >
       {status === 'success' && (
         <>
           <div className={cx('review-overview-section')}>

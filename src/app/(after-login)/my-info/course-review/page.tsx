@@ -2,6 +2,7 @@
 import { useEffect } from 'react';
 
 import { useQueryClient } from '@tanstack/react-query';
+import { useRouter } from 'next/navigation';
 
 import ReviewLayout from '@/app/(after-login)/my-info/_components/review-layout';
 import Tabs from '@/components/common/taps';
@@ -9,6 +10,7 @@ import Layout from '@/components/layout';
 import { useCourseCompleteReviewQuery } from '@/queries/courseReviewQuery';
 
 const Review = () => {
+  const router = useRouter();
   const queryClient = useQueryClient();
   const { data, isLoading, error } = useCourseCompleteReviewQuery();
   const totalReviewCount = data?.response.totalReviewCount;
@@ -37,6 +39,7 @@ const Review = () => {
       hasTabBar={false}
       back={true}
       title='My course review'
+      onBack={() => router.push('/my-info')}
     >
       <Tabs
         tabs={[
