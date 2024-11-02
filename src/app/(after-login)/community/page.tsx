@@ -3,8 +3,6 @@ import { useEffect, useState } from 'react';
 
 import CommunityFeed from '@/app/(after-login)/community/_components/community-feed';
 import CommunityLayout from '@/app/(after-login)/community/_components/community-layout';
-import IconAlarm from '@/assets/icon/icon-alarm.svg';
-import IconSearchMono from '@/assets/icon/icon-search-mono.svg';
 import Layout from '@/components/layout';
 import { useGetAuthId } from '@/queries/authQuery';
 import { usePostCategoryMutation } from '@/queries/postQuery';
@@ -87,22 +85,7 @@ const Community = () => {
     return <div>Error: {error?.message}</div>;
   }
   return (
-    <Layout
-      title='Community'
-      back={false}
-      hasTopNav={true}
-      hasTabBar={true}
-      actions={[
-        {
-          icon: IconSearchMono,
-          onClick: () => console.log('검색바 클릭'),
-        },
-        {
-          icon: IconAlarm,
-          onClick: () => console.log('알람 클릭'),
-        },
-      ]}
-    >
+    <Layout title='Community' back={false} hasTopNav={true} hasTabBar={true}>
       <CommunityLayout
         activeChip={activeChip}
         setActiveChip={setActiveChip}
