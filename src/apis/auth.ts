@@ -37,7 +37,14 @@ export const logoutAPI = async () => {
 };
 
 export const signupAPI = async (request: SignupRequest) => {
-  const { token, nickname, description } = request;
+  const {
+    token,
+    nickname,
+    description,
+    difficultyLevel,
+    durationLevel,
+    environmentLevel,
+  } = request;
 
   try {
     const response = await axiosInstance.post(
@@ -45,6 +52,9 @@ export const signupAPI = async (request: SignupRequest) => {
       {
         nickname,
         description,
+        difficultyLevel,
+        durationLevel,
+        environmentLevel,
       },
       {
         headers: {
@@ -78,12 +88,11 @@ export const refreshTokenAPI = async (refreshToken: string) => {
   }
 };
 
-
 export const withdrawalAPI = async () => {
   try {
     const response = await axiosInstance.delete('/auth/withdrawal');
     return response.data;
-   } catch (error) {
+  } catch (error) {
     console.log(error);
     throw error;
   }

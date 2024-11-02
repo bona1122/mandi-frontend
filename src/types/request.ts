@@ -1,9 +1,13 @@
 import { Coordinate } from './course';
+import { DifficultyLevel, DurationLevel, EnvironmentLevel } from './profile';
 
 export type SignupRequest = {
   token: string;
   nickname: string;
   description: string;
+  difficultyLevel: DifficultyLevel;
+  durationLevel: DurationLevel;
+  environmentLevel: EnvironmentLevel;
 };
 
 export type LoginRequest = {
@@ -63,7 +67,7 @@ export type StartTrekkingRequest = {
     latitude: number;
     longitude: number;
   };
-}
+};
 
 export type FinishTrekkingRequest = {
   userLocation: {
@@ -71,4 +75,4 @@ export type FinishTrekkingRequest = {
     longitude: number;
   };
   completedAt: string;
-}
+};

@@ -1,4 +1,4 @@
-import { useForm, Controller } from 'react-hook-form';
+import { useForm, Controller, FieldValues } from 'react-hook-form';
 
 import classNames from 'classnames/bind';
 
@@ -7,6 +7,7 @@ import IconMountainSmall from '@/assets/icon/icon-mountain-small.svg';
 import IconOcean from '@/assets/icon/icon-ocean.svg';
 import Button from '@/components/common/button';
 import Layout from '@/components/layout';
+import { EnvironmentLevel } from '@/types/profile';
 
 import styles from './common.module.scss';
 
@@ -15,7 +16,7 @@ const cn = classNames.bind(styles);
 const BLOCK = 'step';
 
 interface Step5Props {
-  onSubmit: (data: any) => void;
+  onSubmit: (data: { environmentLevel: EnvironmentLevel }) => void;
   onBack: () => void;
 }
 
@@ -23,8 +24,8 @@ const Step5 = ({ onSubmit, onBack }: Step5Props) => {
   const { control, handleSubmit, watch } = useForm();
   const selected = watch('element');
 
-  const handleFinalSubmit = (data: any) => {
-    onSubmit(data);
+  const handleFinalSubmit = (data: FieldValues) => {
+    onSubmit({ environmentLevel: data.element });
   };
 
   return (
@@ -46,30 +47,30 @@ const Step5 = ({ onSubmit, onBack }: Step5Props) => {
             render={({ field }) => (
               <div className={cn(`${BLOCK}__select-container--controller`)}>
                 <div
-                  onClick={() => field.onChange('I like the ocean')}
+                  onClick={() => field.onChange(EnvironmentLevel.OCEAN)}
                   className={cn(`${BLOCK}__select-container--item`, {
                     [`${BLOCK}__select-container--item--selected`]:
-                      selected === 'I like the ocean',
+                      selected === EnvironmentLevel.OCEAN,
                   })}
                 >
                   <IconOcean />
                   <p>I like the ocean</p>
                 </div>
                 <div
-                  onClick={() => field.onChange('I like mountains')}
+                  onClick={() => field.onChange(EnvironmentLevel.MOUNTAIN)}
                   className={cn(`${BLOCK}__select-container--item`, {
                     [`${BLOCK}__select-container--item--selected`]:
-                      selected === 'I like mountains',
+                      selected === EnvironmentLevel.MOUNTAIN,
                   })}
                 >
                   <IconMountainSmall />
                   <p>I like mountains</p>
                 </div>
                 <div
-                  onClick={() => field.onChange('It dosen’t matter')}
+                  onClick={() => field.onChange(EnvironmentLevel.DOESNT_MATTER)}
                   className={cn(`${BLOCK}__select-container--item`, {
                     [`${BLOCK}__select-container--item--selected`]:
-                      selected === 'It dosen’t matter',
+                      selected === EnvironmentLevel.DOESNT_MATTER,
                   })}
                 >
                   <IconBus />

@@ -1,4 +1,4 @@
-import { Controller, useForm } from 'react-hook-form';
+import { Controller, FieldValues, useForm } from 'react-hook-form';
 
 import classNames from 'classnames/bind';
 
@@ -13,7 +13,7 @@ const cn = classNames.bind(styles);
 const BLOCK = 'step';
 
 interface Step1Props {
-  onNext: (data: any) => void;
+  onNext: (data: { nickname: string }) => void;
 }
 
 const Step1 = ({ onNext }: Step1Props) => {
@@ -39,7 +39,7 @@ const Step1 = ({ onNext }: Step1Props) => {
     },
   });
 
-  const onSubmit = (data: any) => {
+  const onSubmit = (data: FieldValues) => {
     checkNickname(data.nickname);
   };
 

@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { FieldValues } from 'react-hook-form';
 
 import { useRouter } from 'next/navigation';
 import { useSession } from 'next-auth/react';
@@ -19,7 +20,13 @@ const SignUp = () => {
   const { data: session } = useSession();
 
   const [step, setStep] = useState(1);
-  const [formData, setFormData] = useState({ nickname: '', description: '' });
+  const [formData, setFormData] = useState({
+    nickname: '',
+    description: '',
+    difficultyLevel: 0,
+    durationLevel: 0,
+    environmentLevel: 0,
+  });
 
   const { mutate: signup } = useSignupMutation({
     onSuccess: () => {
@@ -30,7 +37,7 @@ const SignUp = () => {
     },
   });
 
-  const handleNext = (data: any) => {
+  const handleNext = (data: FieldValues) => {
     setFormData(prev => ({ ...prev, ...data }));
     setStep(prev => prev + 1);
   };
@@ -39,8 +46,9 @@ const SignUp = () => {
     setStep(prev => prev - 1);
   };
 
-  const handleSubmit = (data: any) => {
-    signup({ token: session?.accessToken, ...formData, ...data });
+  const handleSubmit = (data: FieldValues) => {
+    console.log(formData, data);
+    signup({ token: session?.accessToken || '', ...formData, ...data });
   };
 
   useEffect(() => {

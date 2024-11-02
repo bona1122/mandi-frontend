@@ -1,16 +1,17 @@
-import { useForm, Controller } from 'react-hook-form';
+import { useForm, Controller, FieldValues } from 'react-hook-form';
 
 import classNames from 'classnames/bind';
 
 import Button from '@/components/common/button';
 import Layout from '@/components/layout';
+import { DurationLevel } from '@/types/profile';
 
 import styles from './common.module.scss';
 
 const cn = classNames.bind(styles);
 const BLOCK = 'step';
 interface Step4Props {
-  onNext: (data: any) => void;
+  onNext: (data: { durationLevel: DurationLevel }) => void;
   onBack: () => void;
 }
 
@@ -18,8 +19,8 @@ const Step4 = ({ onNext, onBack }: Step4Props) => {
   const { control, handleSubmit, watch } = useForm();
   const selected = watch('time');
 
-  const onSubmit = (data: any) => {
-    onNext(data);
+  const onSubmit = (data: FieldValues) => {
+    onNext({ durationLevel: data.time });
   };
 
   return (
@@ -41,37 +42,45 @@ const Step4 = ({ onNext, onBack }: Step4Props) => {
             render={({ field }) => (
               <div className={cn(`${BLOCK}__select-container--controller`)}>
                 <div
-                  onClick={() => field.onChange('less than 3 hours')}
+                  onClick={() =>
+                    field.onChange(DurationLevel.LESS_THAN_3_HOURS)
+                  }
                   className={cn(`${BLOCK}__select-container--item`, {
                     [`${BLOCK}__select-container--item--selected`]:
-                      selected === 'less than 3 hours',
+                      selected === DurationLevel.LESS_THAN_3_HOURS,
                   })}
                 >
                   less than 3 hours
                 </div>
                 <div
-                  onClick={() => field.onChange('3 to 6 hours')}
+                  onClick={() =>
+                    field.onChange(DurationLevel.THREE_TO_SIX_HOURS)
+                  }
                   className={cn(`${BLOCK}__select-container--item`, {
                     [`${BLOCK}__select-container--item--selected`]:
-                      selected === '3 to 6 hours',
+                      selected === DurationLevel.THREE_TO_SIX_HOURS,
                   })}
                 >
                   3 to 6 hours
                 </div>
                 <div
-                  onClick={() => field.onChange('6 to 9 hours')}
+                  onClick={() =>
+                    field.onChange(DurationLevel.SIX_TO_NINE_HOURS)
+                  }
                   className={cn(`${BLOCK}__select-container--item`, {
                     [`${BLOCK}__select-container--item--selected`]:
-                      selected === '6 to 9 hours',
+                      selected === DurationLevel.SIX_TO_NINE_HOURS,
                   })}
                 >
                   6 to 9 hours
                 </div>
                 <div
-                  onClick={() => field.onChange('more than 9 hours')}
+                  onClick={() =>
+                    field.onChange(DurationLevel.MORE_THAN_NINE_HOURS)
+                  }
                   className={cn(`${BLOCK}__select-container--item`, {
                     [`${BLOCK}__select-container--item--selected`]:
-                      selected === 'more than 9 hours',
+                      selected === DurationLevel.MORE_THAN_NINE_HOURS,
                   })}
                 >
                   more than 9 hours
