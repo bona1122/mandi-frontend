@@ -248,3 +248,7 @@ export interface FinishTrekkingResponse extends BaseResponse {
     enabled: boolean;
   };
 }
+
+export interface GetPreferredCoursesResponse extends BaseResponse {
+  response: CourseDTO[];
+}

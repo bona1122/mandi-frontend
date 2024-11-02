@@ -8,6 +8,7 @@ import {
   GetCoursesResponse,
   CourseNamesResponse,
   GetCourseDetailResponse,
+  GetPreferredCoursesResponse,
 } from '@/types/response';
 
 import { axiosInstance } from './axiosInstance';
@@ -37,6 +38,21 @@ export const getCoursesAPI = async (
     throw error;
   }
 };
+
+export const getPreferredCoursesAPI =
+  async (): Promise<GetPreferredCoursesResponse> => {
+    try {
+      const response = await axiosInstance.get('/courses/preferred');
+
+      if (response.status === 200) {
+        return response.data;
+      } else {
+        throw new Error(response.data.error.message);
+      }
+    } catch (error) {
+      throw error;
+    }
+  };
 
 export const getNearbyCoursesAPI = async (
   request: GetNearbyCoursesRequest,

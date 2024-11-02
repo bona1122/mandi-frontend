@@ -2,7 +2,7 @@
 
 import classNames from 'classnames/bind';
 
-import { useCoursesQuery } from '@/queries/courseQuery';
+import { usePreferredCoursesQuery } from '@/queries/courseQuery';
 import { useMyInfoQuery } from '@/queries/myInfoQuery';
 
 import CourseCard from '../common/CourseCard';
@@ -14,9 +14,7 @@ const BLOCK = 'recommend-courses';
 
 const RecommendCourses = () => {
   const { data: userInfo } = useMyInfoQuery();
-  const courseQuery = useCoursesQuery({
-    size: '5',
-  });
+  const preferredCourseQuery = usePreferredCoursesQuery();
 
   return (
     <div className={cn(BLOCK)}>
@@ -26,14 +24,12 @@ const RecommendCourses = () => {
       <div
         className={cn([
           `${BLOCK}__list`,
-          courseQuery.isLoading && `${BLOCK}__list--isLoading`,
+          preferredCourseQuery.isLoading && `${BLOCK}__list--isLoading`,
         ])}
       >
-        {courseQuery.data?.pages.map((page, index) =>
-          page.response.courses.map((course, index) => (
-            <CourseCard key={index} course={course} index={index} />
-          )),
-        )}
+        {preferredCourseQuery.data?.response.map((course, index) => (
+          <CourseCard key={index} course={course} index={index} />
+        ))}
       </div>
     </div>
   );
