@@ -250,5 +250,7 @@ export interface FinishTrekkingResponse extends BaseResponse {
 }
 
 export interface GetPreferredCoursesResponse extends BaseResponse {
-  response: CourseDTO[];
+  response: {
+    courses: CourseDTO[];
+  };
 }

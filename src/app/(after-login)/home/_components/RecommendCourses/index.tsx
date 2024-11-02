@@ -27,7 +27,7 @@ const RecommendCourses = () => {
           preferredCourseQuery.isLoading && `${BLOCK}__list--isLoading`,
         ])}
       >
-        {preferredCourseQuery.data?.response.map((course, index) => (
+        {preferredCourseQuery.data?.response.courses.map((course, index) => (
           <CourseCard key={index} course={course} index={index} />
         ))}
       </div>

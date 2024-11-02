@@ -5,6 +5,7 @@ import {
   MAX_TIMEOUT_TIME,
   NO_AUTH_ENDPOINTS,
   NO_AUTH_PATTERNS,
+  PREFERRED_COURSES_ENDPOINT,
   REFRESH_TOKEN_ENDPOINT,
 } from '@/constants/api';
 import {
@@ -41,8 +42,9 @@ axiosInstance.interceptors.request.use(
     const accessToken = getAccessToken();
 
     const isNoAuthEndpoint =
-      NO_AUTH_ENDPOINTS.includes(request.url ?? '') ||
-      NO_AUTH_PATTERNS.some(pattern => pattern.test(request.url ?? ''));
+      !request.url?.includes(PREFERRED_COURSES_ENDPOINT) &&
+      (NO_AUTH_ENDPOINTS.includes(request.url ?? '') ||
+        NO_AUTH_PATTERNS.some(pattern => pattern.test(request.url ?? '')));
     if (accessToken && !isNoAuthEndpoint) {
       if (REFRESH_TOKEN_ENDPOINT.includes(request.url ?? '')) {
         console.log(request.url);
