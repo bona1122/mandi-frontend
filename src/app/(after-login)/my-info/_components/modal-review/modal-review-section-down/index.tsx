@@ -1,11 +1,13 @@
 import classNames from 'classnames/bind';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 
 import Button from '@/components/common/button';
 import StarScope from '@/components/star-scope';
 
 import styles from './modalReviewSectionDown.module.scss';
 export interface ModalReviewSectionDownProps {
+  id?: number;
   review?: string;
   reviewImgs?: string[];
   score?: number;
@@ -16,14 +18,18 @@ export interface ModalReviewSectionDownProps {
 const cx = classNames.bind(styles);
 
 const ModalReviewSectionDown = ({
+  id,
   review,
   reviewImgs,
   score,
   date,
   modal,
 }: ModalReviewSectionDownProps) => {
+  const router = useRouter();
   const handleClick = () => {
-    alert('리뷰작성 버튼 클릭');
+    // alert('리뷰작성 버튼 클릭');
+    // console.log(id);
+    router.push(`/review/write/${id}`);
   };
   if (modal === 'write') {
     return (
