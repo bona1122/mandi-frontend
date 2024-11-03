@@ -8,6 +8,7 @@ import {
   getCoursesAPI,
   getGPXDataAPI,
   getNearbyCoursesAPI,
+  getPreferredCoursesAPI,
 } from '@/apis/course';
 import {
   GetCourseDetailRequest,
@@ -18,6 +19,7 @@ import {
   GetCourseDetailResponse,
   GetCoursesResponse,
   GetNearbyCoursesResponse,
+  GetPreferredCoursesResponse,
 } from '@/types/response';
 
 export const useCoursesQuery = (params: GetCoursesRequest, enabled = true) => {
@@ -35,6 +37,13 @@ export const useCoursesQuery = (params: GetCoursesRequest, enabled = true) => {
       return currentPage < totalPages ? currentPage + 1 : undefined;
     },
     enabled,
+  });
+};
+
+export const usePreferredCoursesQuery = () => {
+  return useQuery<GetPreferredCoursesResponse, AxiosError>({
+    queryKey: ['preferred-courses'],
+    queryFn: () => getPreferredCoursesAPI(),
   });
 };
 

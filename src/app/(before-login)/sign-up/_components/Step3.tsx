@@ -1,4 +1,4 @@
-import { useForm, Controller } from 'react-hook-form';
+import { useForm, Controller, FieldValues } from 'react-hook-form';
 
 import classNames from 'classnames/bind';
 
@@ -7,6 +7,7 @@ import IconSprout from '@/assets/icon/icon-sprout.svg';
 import IconTree from '@/assets/icon/icon-tree.svg';
 import Button from '@/components/common/button';
 import Layout from '@/components/layout';
+import { DifficultyLevel } from '@/types/profile';
 
 import styles from './common.module.scss';
 
@@ -14,7 +15,7 @@ const cn = classNames.bind(styles);
 const BLOCK = 'step';
 
 interface Step3Props {
-  onNext: (data: any) => void;
+  onNext: (data: { difficultyLevel: DifficultyLevel }) => void;
   onBack: () => void;
 }
 
@@ -22,8 +23,8 @@ const Step3 = ({ onNext, onBack }: Step3Props) => {
   const { control, handleSubmit, watch } = useForm();
   const selected = watch('level');
 
-  const onSubmit = (data: any) => {
-    onNext(data);
+  const onSubmit = (data: FieldValues) => {
+    onNext({ difficultyLevel: data.level });
   };
 
   return (
@@ -43,30 +44,30 @@ const Step3 = ({ onNext, onBack }: Step3Props) => {
             render={({ field }) => (
               <div className={cn(`${BLOCK}__select-container--controller`)}>
                 <div
-                  onClick={() => field.onChange('Beginner')}
+                  onClick={() => field.onChange(DifficultyLevel.BEGINNER)}
                   className={cn(`${BLOCK}__select-container--item`, {
                     [`${BLOCK}__select-container--item--selected`]:
-                      selected === 'Beginner',
+                      selected === DifficultyLevel.BEGINNER,
                   })}
                 >
                   <IconSprout />
                   <p>Beginner</p>
                 </div>
                 <div
-                  onClick={() => field.onChange('Intermediate')}
+                  onClick={() => field.onChange(DifficultyLevel.INTERMEDIATE)}
                   className={cn(`${BLOCK}__select-container--item`, {
                     [`${BLOCK}__select-container--item--selected`]:
-                      selected === 'Intermediate',
+                      selected === DifficultyLevel.INTERMEDIATE,
                   })}
                 >
                   <IconPot />
                   <p>Intermediate</p>
                 </div>
                 <div
-                  onClick={() => field.onChange('Advanced')}
+                  onClick={() => field.onChange(DifficultyLevel.ADVANCED)}
                   className={cn(`${BLOCK}__select-container--item`, {
                     [`${BLOCK}__select-container--item--selected`]:
-                      selected === 'Advanced',
+                      selected === DifficultyLevel.ADVANCED,
                   })}
                 >
                   <IconTree />

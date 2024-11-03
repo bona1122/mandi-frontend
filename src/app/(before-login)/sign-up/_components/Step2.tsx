@@ -1,4 +1,4 @@
-import { useForm, Controller } from 'react-hook-form';
+import { useForm, Controller, FieldValues } from 'react-hook-form';
 
 import classNames from 'classnames/bind';
 
@@ -12,7 +12,7 @@ const cn = classNames.bind(styles);
 const BLOCK = 'step';
 
 interface Step2Props {
-  onNext: (data: any) => void;
+  onNext: (data: { description: string }) => void;
   onBack: () => void;
 }
 
@@ -23,8 +23,8 @@ const Step2 = ({ onNext, onBack }: Step2Props) => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data: any) => {
-    onNext(data);
+  const onSubmit = (data: FieldValues) => {
+    onNext({ description: data.description });
   };
 
   return (
@@ -58,7 +58,7 @@ const Step2 = ({ onNext, onBack }: Step2Props) => {
             type='button'
             size='full'
             color='darkgray'
-            onClick={onSubmit}
+            onClick={() => onSubmit({ description: '' })}
             className={cn(`${BLOCK}__button`)}
           >
             Skip

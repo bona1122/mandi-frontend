@@ -38,7 +38,14 @@ export const logoutAPI = async () => {
 };
 
 export const signupAPI = async (request: SignupRequest) => {
-  const { token, nickname, description } = request;
+  const {
+    token,
+    nickname,
+    description,
+    difficultyLevel,
+    durationLevel,
+    environmentLevel,
+  } = request;
 
   try {
     const response = await axiosInstance.post(
@@ -46,6 +53,9 @@ export const signupAPI = async (request: SignupRequest) => {
       {
         nickname,
         description,
+        difficultyLevel,
+        durationLevel,
+        environmentLevel,
       },
       {
         headers: {

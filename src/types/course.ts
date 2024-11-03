@@ -67,7 +67,8 @@ export type MapCourseDTO = Omit<
   gpxUrl: string;
 };
 
-export type CourseDetailDTO = Omit<MapCourseDTO, 'midPoint'> & Pick<CourseDTO, 'imgUrl'>;
+export type CourseDetailDTO = Omit<MapCourseDTO, 'midPoint'> &
+  Pick<CourseDTO, 'imgUrl'>;
 
 export type CourseNameDTO = {
   id: number;

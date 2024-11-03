@@ -256,6 +256,13 @@ export interface FinishTrekkingResponse extends BaseResponse {
   };
 }
 
+
+export interface GetPreferredCoursesResponse extends BaseResponse {
+  response: {
+    courses: CourseDTO[];
+  };
+}
+
 export interface PostReviewResponse extends BaseResponse {
   success: boolean;
   response: {
@@ -281,3 +288,4 @@ export interface GetUserIdResponse extends BaseResponse {
   success: boolean;
   response: number;
 }
+

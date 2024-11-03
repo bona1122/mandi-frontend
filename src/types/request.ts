@@ -1,9 +1,13 @@
 import { Coordinate } from './course';
+import { DifficultyLevel, DurationLevel, EnvironmentLevel } from './profile';
 
 export type SignupRequest = {
   token: string;
   nickname: string;
   description: string;
+  difficultyLevel: DifficultyLevel;
+  durationLevel: DurationLevel;
+  environmentLevel: EnvironmentLevel;
 };
 
 export type LoginRequest = {
@@ -86,3 +90,4 @@ export type GetCourseReviewsRequest = {
   size?: string;
   sortType?: 'LATEST' | 'HIGHEST_RATING' | 'LOWEST_RATING';
 };
+
