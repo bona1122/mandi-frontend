@@ -7,6 +7,13 @@ import {
   MapCourseDTO,
 } from './course';
 import { OauthProvider } from './oauth-provider';
+import { PageInfo } from './page';
+import {
+  CompletedCourseDTO,
+  ImageUrl,
+  ReviewDTO,
+  ReviewSummary,
+} from './review';
 import { WeatherItem } from './weather';
 
 interface BaseResponse extends AxiosResponse {
@@ -249,8 +256,36 @@ export interface FinishTrekkingResponse extends BaseResponse {
   };
 }
 
+
 export interface GetPreferredCoursesResponse extends BaseResponse {
   response: {
     courses: CourseDTO[];
   };
 }
+
+export interface PostReviewResponse extends BaseResponse {
+  success: boolean;
+  response: {
+    completedCourse: CompletedCourseDTO;
+    isReviewed: boolean;
+    content: string;
+    score: number;
+    imageUrlList: ImageUrl[];
+    reviewedAt: string;
+  };
+}
+
+export interface GetCourseReviewsResponse extends BaseResponse {
+  success: boolean;
+  response: {
+    pageInfo: PageInfo;
+    reviewSummary: ReviewSummary;
+    reviews: ReviewDTO[];
+  };
+}
+
+export interface GetUserIdResponse extends BaseResponse {
+  success: boolean;
+  response: number;
+}
+

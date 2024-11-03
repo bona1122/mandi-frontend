@@ -47,6 +47,7 @@ const ModalReview = ({
         distance={distance}
       />
       <ModalReviewSectionDown
+        id={CourseId}
         review={review}
         reviewImgs={reviewImgs}
         score={score}

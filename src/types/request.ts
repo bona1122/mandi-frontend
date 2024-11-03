@@ -76,3 +76,18 @@ export type FinishTrekkingRequest = {
   };
   completedAt: string;
 };
+
+export type PostReviewRequest = {
+  completedCourseId: number;
+  content: string;
+  score: number;
+  base64EncodedImageList: string[];
+};
+
+export type GetCourseReviewsRequest = {
+  courseId: number;
+  page?: string;
+  size?: string;
+  sortType?: 'LATEST' | 'HIGHEST_RATING' | 'LOWEST_RATING';
+};
+

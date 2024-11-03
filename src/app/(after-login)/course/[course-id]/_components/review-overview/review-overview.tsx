@@ -1,4 +1,7 @@
 import classNames from 'classnames/bind';
+import e from 'express';
+
+import { ReviewSummary } from '@/types/review';
 
 import RatingChart, { Rating } from '../rating-chart/rating-chart';
 import StarRating from '../star-raing/star-rating';
@@ -9,25 +12,47 @@ const cx = classNames.bind(styles);
 
 const BLOCK = 'review-overview';
 
-const ratings: Rating[] = [
-  { label: 'Excellent', count: 17 },
-  { label: 'Very Good', count: 3 },
-  { label: 'Average', count: 0 },
-  { label: 'Poor', count: 1 },
-  { label: 'Terrible', count: 0 },
-];
+// const ratings: Rating[] = [
+//   { label: 'Excellent', count: 17 },
+//   { label: 'Very Good', count: 3 },
+//   { label: 'Average', count: 0 },
+//   { label: 'Poor', count: 1 },
+//   { label: 'Terrible', count: 0 },
+// ];
 
-const ReviewOverview = () => {
+interface ReviewOverviewProps {
+  summary: ReviewSummary;
+}
+
+const ReviewOverview = ({ summary }: ReviewOverviewProps) => {
+  const {
+    excellentCount,
+    averageCount,
+    veryGoodCount,
+    poorCount,
+    terribleCount,
+  } = summary;
+  const ratings: Rating[] = [
+    { label: 'Excellent', count: excellentCount },
+    { label: 'Very Good', count: veryGoodCount },
+    { label: 'Average', count: averageCount },
+    { label: 'Poor', count: poorCount },
+    { label: 'Terrible', count: terribleCount },
+  ];
   return (
     <div className={cx(BLOCK)}>
       <h3 className={cx(`${BLOCK}__header`)}>
         Reviews
-        <span className={cx(`${BLOCK}__header__review-counts`)}>23</span>
+        <span className={cx(`${BLOCK}__header__review-counts`)}>
+          {summary.totalReviewCount}
+        </span>
       </h3>
       <div className={cx(`${BLOCK}__content`)}>
         <div className={cx(`${BLOCK}__score`)}>
-          <span className={cx(`${BLOCK}__score__number`)}>4.1</span>
-          <StarRating rating={4.8} />
+          <span className={cx(`${BLOCK}__score__number`)}>
+            {summary.averageReviewScore}
+          </span>
+          <StarRating rating={summary.averageReviewScore} />
         </div>
         <RatingChart ratings={ratings} />
       </div>

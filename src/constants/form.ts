@@ -16,3 +16,11 @@ export const BIO_RULES = {
     message: 'Please enter up to 80 characters.',
   },
 };
+
+
+export const REVIEW_TEXT_RULES = {
+  pattern: {
+    value: /^.{0,700}$/,
+    message: 'Please enter up to 700 characters.',
+  },
+}

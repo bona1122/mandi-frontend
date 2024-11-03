@@ -1,4 +1,5 @@
 import { LoginRequest, SignupRequest } from '@/types/request';
+import { GetUserIdResponse } from '@/types/response';
 import { setAccessToken, setRefreshToken } from '@/utils/auth';
 
 import { axiosInstance } from './axiosInstance';
@@ -108,6 +109,21 @@ export const getAuthId = async () => {
     }
   } catch (error) {
     console.log(error);
+    throw error;
+  }
+};
+
+export const getUserIdAPI = async (): Promise<GetUserIdResponse> => {
+  try {
+    const response = await axiosInstance.get('/auth/id');
+
+    if (response.status === 200) {
+      return response.data;
+    } else {
+      throw new Error(`Error: ${response.status}`);
+    }
+  } catch (error) {
+    // console.log(error);
     throw error;
   }
 };
