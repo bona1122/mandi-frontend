@@ -1,36 +1,45 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+![Frame 1](https://github.com/user-attachments/assets/697a85c0-fe22-47b9-8627-994484652d4e)
 
-## Getting Started
 
-First, run the development server:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 기술 스택
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **React**  
+  재사용 가능한 컴포넌트를 구축하고 효율적인 업데이트를 가능하게 하는 컴포넌트 기반 UI 라이브러리.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Next.js**  
+  서버 사이드 렌더링(SSR)과 정적 사이트 생성(SSG)을 지원하여 SEO와 성능 최적화 제공.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- **Zustand**  
+  전역 상태 관리를 단순화하며 최소한의 보일러플레이트로 가벼운 상태 관리 가능.
 
-## Learn More
+- **React-query**  
+  서버 상태 관리 및 비동기 데이터 처리 최적화를 제공하며, 캐싱 및 리패칭 기능 지원.
 
-To learn more about Next.js, take a look at the following resources:
+- **SCSS**  
+  BEM 방식을 활용한 모듈화된 스타일링을 구현하며, 중첩과 변수와 같은 기능을 통해 유지보수성을 향상.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **TypeScript**  
+  정적 타입 검사를 제공하여 코드의 안정성과 가독성을 높이고 개발 생산성을 향상.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- **PWA (Progressive Web App)**  
+  오프라인 접근성과 네이티브 앱과 유사한 사용자 경험을 웹 기술로 제공.
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 와이어프레임
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+프로젝트의 와이어프레임은 다음 링크에서 확인할 수 있습니다: [Figma Wireframe](https://www.figma.com/design/VJtjFzGajx754YnXJjyjra/%ED%94%84%EB%A1%9C%ED%86%A0%ED%83%80%EC%9E%85?node-id=0-1&t=1FGKb1R85H0U1tNa-1)
+
+### 와이어프레임 목적
+
+- **사용자 중심 설계**  
+  Figma 와이어프레임은 사용자 플로우를 명확히 시각화하고, 사용자 중심의 인터페이스 설계를 위한 기초를 제공합니다.
+
+- **효율적인 팀 협업**  
+  디자이너와 개발자 간 원활한 소통을 돕고, 각 기능의 레이아웃과 동작을 사전에 정의할 수 있습니다.
+
+- **빠른 피드백 루프**  
+  초기 단계에서 구조와 UI를 구체화하여 빠른 피드백과 반복 작업을 가능하게 합니다.
+
+---
